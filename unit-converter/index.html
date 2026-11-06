@@ -174,7 +174,7 @@
     if(isNaN(n)){dst.value='';$('formula').textContent='';$('all').innerHTML='';$('allval').textContent='';return}
     dst.value=fmt(conv(n,fu,tu));
     var a=parse(v1.value);
-    $('formula').textContent=nice(a)+' '+u1.value+' = '+nice(conv(a,u1.value,u2.value))+' '+u2.value+(cat==='temperature'?'':'  ·  1 '+u1.value+' = '+nice(conv(1,u1.value,u2.value))+' '+u2.value);
+    $('formula').textContent=nice(a)+' '+u1.value+' = '+nice(conv(a,u1.value,u2.value))+' '+u2.value+(cat==='temperature'||a===1?'':'  ·  1 '+u1.value+' = '+nice(conv(1,u1.value,u2.value))+' '+u2.value);
     $('allval').textContent=nice(a)+' '+u1.value;
     $('all').innerHTML=C[cat].u.map(function(x){var r=fmt(conv(a,u1.value,x[0]));return '<tr'+(x[0]===u2.value?' class="cur"':'')+'><td>'+x[1]+' <span class="muted">('+x[0]+')</span></td><td>'+nice(conv(a,u1.value,x[0]))+'</td><td><button type="button" data-v="'+r+'" aria-label="Copy '+x[1]+' value">Copy</button></td></tr>'}).join('');
   }
