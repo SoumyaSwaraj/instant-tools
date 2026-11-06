@@ -131,7 +131,7 @@
 (function(){
 var $=function(id){return document.getElementById(id)};
 var drop=$('drop'),work=$('work'),stage=$('stage'),im=$('img'),cbox=$('cbox'),fx=$('cx'),fy=$('cy'),fw=$('cw'),fh=$('ch');
-var file,IW=0,IH=0,ratio=0,r={x:0,y:0,w:0,h:0},drag=null,MIN=8;
+var file,IW=0,IH=0,ratio=0,r={x:0,y:0,w:0,h:0},drag=null,prev=null,MIN=8;
 IT.dropzone(drop,{accept:'image/*',paste:true,onFiles:function(f){load(f[0])}});
 function load(f){if(!f||!/^image\//.test(f.type)){IT.toast('Please choose an image');return}
   IT.loadImage(f).then(function(i){if(im.src)URL.revokeObjectURL(im.src);file=f;im.src=i.src;IW=i.naturalWidth;IH=i.naturalHeight;
@@ -147,10 +147,10 @@ function paint(){r.x=Math.round(r.x);r.y=Math.round(r.y);r.w=Math.round(r.w);r.h
 function pt(e){var b=im.getBoundingClientRect();return{x:(e.clientX-b.left)*IW/b.width,y:(e.clientY-b.top)*IH/b.height}}
 function start(e,h,r0){if(e.button>0)return;e.preventDefault();drag={h:h,p:pt(e),r0:r0||{x:r.x,y:r.y,w:r.w,h:r.h}};cbox.setPointerCapture(e.pointerId)}
 cbox.addEventListener('pointerdown',function(e){e.stopPropagation();start(e,(e.target.dataset&&e.target.dataset.h)||'move')});
-stage.addEventListener('pointerdown',function(e){if(e.target===cbox||cbox.contains(e.target))return;var p=pt(e);
+stage.addEventListener('pointerdown',function(e){if(e.target===cbox||cbox.contains(e.target))return;var p=pt(e);prev={x:r.x,y:r.y,w:r.w,h:r.h};
   r={x:p.x,y:p.y,w:0,h:0};start(e,'se',{x:p.x,y:p.y,w:0,h:0})});
 cbox.addEventListener('pointermove',function(e){if(!drag)return;var p=pt(e),dx=p.x-drag.p.x,dy=p.y-drag.p.y;move(drag.h,drag.r0,dx,dy);paint()});
-['pointerup','pointercancel'].forEach(function(n){cbox.addEventListener(n,function(){if(drag&&(r.w<MIN||r.h<MIN)&&drag.h==='se'&&drag.r0.w===0)initBox();drag=null})});
+['pointerup','pointercancel'].forEach(function(n){cbox.addEventListener(n,function(){if(drag&&drag.r0.w===0&&(r.w<MIN||r.h<MIN)&&prev){r=prev;paint()}drag=null})});
 function move(h,o,dx,dy){
   if(h==='move'){r.x=Math.max(0,Math.min(o.x+dx,IW-o.w));r.y=Math.max(0,Math.min(o.y+dy,IH-o.h));r.w=o.w;r.h=o.h;return}
   var L=o.x,T=o.y,R=o.x+o.w,B=o.y+o.h;
