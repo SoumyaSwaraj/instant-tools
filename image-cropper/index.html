@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Image Cropper — Crop Photos Online Free (1:1, 16:9)</title>
+<meta name="description" content="Crop images online for free with a draggable crop box. Use 1:1, 4:3, 16:9 or 9:16 ratios, enter exact pixels and save at full resolution — no upload, offline.">
+<meta name="keywords" content="image cropper, crop image, crop photo online, crop image to square, crop 16:9, crop 9:16, crop image 1:1, free photo cropper, crop picture">
+<link rel="canonical" href="https://soumyaswaraj.github.io/instant-tools/image-cropper/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#5b5bf7">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Instant Tools">
+<meta property="og:title" content="Image Cropper — Free &amp; Private">
+<meta property="og:description" content="Drag, resize and crop photos at original resolution. Aspect presets 1:1, 4:3, 16:9, 9:16 and exact pixel inputs. Private, in your browser.">
+<meta property="og:url" content="https://soumyaswaraj.github.io/instant-tools/image-cropper/">
+<meta property="og:image" content="https://soumyaswaraj.github.io/instant-tools/assets/icons/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/css/app.css">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Image Cropper", "url": "https://soumyaswaraj.github.io/instant-tools/image-cropper/", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any (browser-based)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Crop images online for free with a draggable crop box. Use 1:1, 4:3, 16:9 or 9:16 ratios, enter exact pixels and save at full resolution — no upload, offline.", "featureList": ["Draggable, resizable crop box with touch support", "Aspect presets: Free, 1:1, 4:3, 16:9, 9:16", "Exact X, Y, width and height inputs in pixels", "Crops at the original image resolution", "Export as JPG, PNG or WebP", "Works offline", "No upload — files stay on your device"]}, {"@type": "HowTo", "name": "How to crop an image", "step": [{"@type": "HowToStep", "text": "Drop an image onto the cropper, or tap to choose one."}, {"@type": "HowToStep", "text": "Drag the crop box and its handles, pick an aspect ratio such as 1:1 or 16:9, or type exact X, Y, width and height values."}, {"@type": "HowToStep", "text": "Choose a format and click Crop & download to save the cropped image at full resolution."}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does cropping reduce image quality?", "acceptedAnswer": {"@type": "Answer", "text": "No. The crop is taken from the original full-resolution image, so the pixels you keep are unchanged. Saving as PNG is lossless; JPG and WebP are saved at high quality."}}, {"@type": "Question", "name": "How do I crop an image to a square?", "acceptedAnswer": {"@type": "Answer", "text": "Choose the 1:1 aspect preset. The crop box locks to a square that you can move and resize, then click Crop & download."}}, {"@type": "Question", "name": "Can I enter exact crop dimensions?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Type X, Y, width and height in pixels in the number fields. Values are measured in the original image’s pixels and update live as you drag."}}, {"@type": "Question", "name": "Does the cropper work on phones?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The crop box uses pointer events, so you can drag and resize it with your finger on Android and iPhone, and the page works offline once loaded."}}, {"@type": "Question", "name": "Are my photos uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. Cropping happens locally in your browser with the Canvas API, so your photos never leave your device."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Instant Tools", "item": "https://soumyaswaraj.github.io/instant-tools/"}, {"@type": "ListItem", "position": 2, "name": "Image Cropper", "item": "https://soumyaswaraj.github.io/instant-tools/image-cropper/"}]}]}
+</script>
+<style>.crop-wrap{display:flex;justify-content:center;align-items:center;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;overflow:hidden;min-height:220px}
+.stage{position:relative;display:inline-block;touch-action:none;user-select:none;-webkit-user-select:none;line-height:0;cursor:crosshair;max-width:100%}
+.stage img{max-width:100%;max-height:65vh;display:block;pointer-events:none;-webkit-user-drag:none}
+.cbox{position:absolute;box-shadow:0 0 0 9999px rgba(0,0,0,.55);outline:2px solid #fff;cursor:move;touch-action:none}
+.cbox:focus-visible{outline:3px solid var(--brand)}
+.cbox::before,.cbox::after{content:"";position:absolute;pointer-events:none;border:0 solid rgba(255,255,255,.45)}
+.cbox::before{left:33.33%;right:33.33%;top:0;bottom:0;border-left-width:1px;border-right-width:1px}
+.cbox::after{top:33.33%;bottom:33.33%;left:0;right:0;border-top-width:1px;border-bottom-width:1px}
+.hd{position:absolute;width:28px;height:28px;margin:-14px 0 0 -14px;touch-action:none;z-index:1}
+.hd::after{content:"";position:absolute;inset:8px;background:#fff;border:2px solid var(--brand);border-radius:3px}
+.hd[data-h=nw]{left:0;top:0;cursor:nwse-resize}.hd[data-h=n]{left:50%;top:0;cursor:ns-resize}.hd[data-h=ne]{left:100%;top:0;cursor:nesw-resize}
+.hd[data-h=e]{left:100%;top:50%;cursor:ew-resize}.hd[data-h=se]{left:100%;top:100%;cursor:nwse-resize}.hd[data-h=s]{left:50%;top:100%;cursor:ns-resize}
+.hd[data-h=sw]{left:0;top:100%;cursor:nesw-resize}.hd[data-h=w]{left:0;top:50%;cursor:ew-resize}
+.cl{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:760px){.cl{grid-template-columns:1fr}}
+.xywh{display:grid;grid-template-columns:1fr 1fr;gap:10px}.xywh .field{margin:0}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to tool</a>
+<header class="site-header"><div class="container">
+  <a class="logo" href="../"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>Instant Tools</a>
+  <span class="nav-spacer"></span>
+  <button class="btn btn-sm install-btn" type="button">Install app</button>
+  <a class="btn btn-sm" href="../#all-tools">All tools</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</div></header>
+
+<main id="main" class="container">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Home</a> › <a href="../#image">Image tools</a> › Image Cropper</nav>
+
+  <section class="hero">
+    <span class="eyebrow">Image tool</span>
+    <h1>Free <span class="gradient-text">Image Cropper</span> — Crop Photos Online</h1>
+    <p class="lead">Image Cropper lets you drag and resize a crop box over any photo, lock it to 1:1, 4:3, 16:9 or 9:16, and save the cropped area at full original resolution — free, private and offline in your browser.</p>
+    <div class="trust">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>100% free</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>No upload — runs on your device</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Works offline</span>
+    </div>
+  </section>
+
+  <section class="card tool-app" aria-label="Image Cropper">
+<div class="dropzone" id="drop" aria-label="Drop an image here or tap to choose">
+      <div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></div>
+      <strong>Drop an image here or tap to choose</strong>
+      <small>JPG, PNG, WebP, GIF, BMP · or paste from clipboard · processed locally, never uploaded</small>
+      <input type="file" accept="image/*">
+    </div>
+    <div id="work" class="hidden">
+      <div class="cl">
+        <div class="crop-wrap"><div class="stage" id="stage"><img id="img" alt="Image to crop"><div class="cbox" id="cbox" tabindex="0" role="group" aria-label="Crop area — drag to move, use arrow keys to nudge (Shift for 10px)">
+          <span class="hd" data-h="nw"></span><span class="hd" data-h="n"></span><span class="hd" data-h="ne"></span><span class="hd" data-h="e"></span><span class="hd" data-h="se"></span><span class="hd" data-h="s"></span><span class="hd" data-h="sw"></span><span class="hd" data-h="w"></span></div></div></div>
+        <div class="panel">
+          <div class="field"><span class="label" id="arL">Aspect ratio</span><div class="seg" id="ar" role="group" aria-labelledby="arL"><button type="button" data-r="0" aria-pressed="true">Free</button><button type="button" data-r="1" aria-pressed="false">1:1</button><button type="button" data-r="1.3333333" aria-pressed="false">4:3</button><button type="button" data-r="1.7777778" aria-pressed="false">16:9</button><button type="button" data-r="0.5625" aria-pressed="false">9:16</button></div></div>
+          <div class="field xywh">
+            <div class="field"><label for="cx">X (px)</label><input class="input" type="number" id="cx" min="0" inputmode="numeric"></div>
+            <div class="field"><label for="cy">Y (px)</label><input class="input" type="number" id="cy" min="0" inputmode="numeric"></div>
+            <div class="field"><label for="cw">Width (px)</label><input class="input" type="number" id="cw" min="1" inputmode="numeric"></div>
+            <div class="field"><label for="ch">Height (px)</label><input class="input" type="number" id="ch" min="1" inputmode="numeric"></div>
+          </div>
+          <p class="muted" id="info" style="font-size:.85rem;margin:0 0 14px"></p>
+          <div class="field"><label for="fmt">Output format</label><select class="select" id="fmt"><option value="orig">Same as original</option><option value="image/png">PNG (lossless)</option><option value="image/jpeg">JPG</option><option value="image/webp">WebP</option></select></div>
+          <div class="actions"><button class="btn btn-primary" type="button" id="dl">Crop &amp; download</button><button class="btn" type="button" id="resetBox">Reset box</button><button class="btn" type="button" id="newImg">New image</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="content">
+    <section class="card">
+      <h2>How to crop an image</h2>
+      <ol><li>Drop an image onto the cropper, or tap to choose one.</li><li>Drag the crop box and its handles, pick an aspect ratio such as 1:1 or 16:9, or type exact X, Y, width and height values.</li><li>Choose a format and click Crop &amp; download to save the cropped image at full resolution.</li></ol>
+    </section>
+    <section class="card">
+      <h2>What is an image cropper?</h2>
+      <p>An image cropper removes the outer parts of a picture so only a chosen rectangle remains. Cropping is used to improve composition, remove distractions and fit fixed aspect ratios such as 1:1 for profile pictures, 16:9 for YouTube thumbnails and 9:16 for Stories and Reels.</p>
+      <p>This cropper runs entirely in your browser. The crop box is positioned in the image’s real pixel coordinates, so the exported file is cut from the original full-resolution image — never from the scaled-down preview. The selected area is drawn onto an HTML canvas and saved as JPG, PNG or WebP. It works with mouse, touch and keyboard (arrow keys move the box), nothing is uploaded, and it works offline.</p>
+    </section>
+    <section class="card faq">
+      <h2>Frequently asked questions</h2>
+      <details><summary>Does cropping reduce image quality?</summary><p>No. The crop is taken from the original full-resolution image, so the pixels you keep are unchanged. Saving as PNG is lossless; JPG and WebP are saved at high quality.</p></details>
+      <details><summary>How do I crop an image to a square?</summary><p>Choose the 1:1 aspect preset. The crop box locks to a square that you can move and resize, then click Crop &amp; download.</p></details>
+      <details><summary>Can I enter exact crop dimensions?</summary><p>Yes. Type X, Y, width and height in pixels in the number fields. Values are measured in the original image’s pixels and update live as you drag.</p></details>
+      <details><summary>Does the cropper work on phones?</summary><p>Yes. The crop box uses pointer events, so you can drag and resize it with your finger on Android and iPhone, and the page works offline once loaded.</p></details>
+      <details><summary>Are my photos uploaded to a server?</summary><p>No. Cropping happens locally in your browser with the Canvas API, so your photos never leave your device.</p></details>
+    </section>
+    <section class="card">
+      <h2>Related tools</h2>
+      <div class="tools-grid">
+        <a class="tool-card cat-image" href="../image-resizer/"><span class="ti"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span><span><h3>Image Resizer</h3><p>Resize to exact pixels or %.</p></span></a>
+        <a class="tool-card cat-image" href="../rotate-flip-image/"><span class="ti"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2v6h-6"/><path d="M21 13a9 9 0 1 1-3-7.7L21 8"/></svg></span><span><h3>Rotate & Flip Image</h3><p>Rotate any angle, mirror images.</p></span></a>
+        <a class="tool-card cat-image" href="../watermark-image/"><span class="ti"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7l5.7 5.6a8 8 0 1 1-11.3 0z"/></svg></span><span><h3>Add Watermark to Image</h3><p>Stamp text on your photos.</p></span></a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container">
+  <span>© Instant Tools · Free, private browser tools that work offline.</span>
+  <span><a href="../">All tools</a> · <a href="../about/">About &amp; privacy</a></span>
+</div></footer>
+<script src="../assets/js/app.js"></script>
+<script>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var drop=$('drop'),work=$('work'),stage=$('stage'),im=$('img'),cbox=$('cbox'),fx=$('cx'),fy=$('cy'),fw=$('cw'),fh=$('ch');
+var file,IW=0,IH=0,ratio=0,r={x:0,y:0,w:0,h:0},drag=null,MIN=8;
+IT.dropzone(drop,{accept:'image/*',paste:true,onFiles:function(f){load(f[0])}});
+function load(f){if(!f||!/^image\//.test(f.type)){IT.toast('Please choose an image');return}
+  IT.loadImage(f).then(function(i){if(im.src)URL.revokeObjectURL(im.src);file=f;im.src=i.src;IW=i.naturalWidth;IH=i.naturalHeight;
+    [fx,fw].forEach(function(e){e.max=IW});[fy,fh].forEach(function(e){e.max=IH});
+    work.classList.remove('hidden');drop.classList.add('hidden');initBox()}).catch(function(){IT.toast('Could not read this image')})}
+function initBox(){var w=IW*0.8,h=IH*0.8;if(ratio){if(w/h>ratio)w=h*ratio;else h=w/ratio}
+  r={x:(IW-w)/2,y:(IH-h)/2,w:w,h:h};paint()}
+function paint(){r.x=Math.round(r.x);r.y=Math.round(r.y);r.w=Math.round(r.w);r.h=Math.round(r.h);
+  r.w=Math.min(r.w,IW);r.h=Math.min(r.h,IH);r.x=Math.max(0,Math.min(r.x,IW-r.w));r.y=Math.max(0,Math.min(r.y,IH-r.h));
+  var s=cbox.style;s.left=r.x/IW*100+'%';s.top=r.y/IH*100+'%';s.width=r.w/IW*100+'%';s.height=r.h/IH*100+'%';
+  [[fx,r.x],[fy,r.y],[fw,r.w],[fh,r.h]].forEach(function(p){if(document.activeElement!==p[0])p[0].value=p[1]});
+  $('info').textContent='Image '+IW+'×'+IH+' px · crop '+r.w+'×'+r.h+' px'}
+function pt(e){var b=im.getBoundingClientRect();return{x:(e.clientX-b.left)*IW/b.width,y:(e.clientY-b.top)*IH/b.height}}
+function start(e,h,r0){if(e.button>0)return;e.preventDefault();drag={h:h,p:pt(e),r0:r0||{x:r.x,y:r.y,w:r.w,h:r.h}};cbox.setPointerCapture(e.pointerId)}
+cbox.addEventListener('pointerdown',function(e){e.stopPropagation();start(e,(e.target.dataset&&e.target.dataset.h)||'move')});
+stage.addEventListener('pointerdown',function(e){if(e.target===cbox||cbox.contains(e.target))return;var p=pt(e);
+  r={x:p.x,y:p.y,w:0,h:0};start(e,'se',{x:p.x,y:p.y,w:0,h:0})});
+cbox.addEventListener('pointermove',function(e){if(!drag)return;var p=pt(e),dx=p.x-drag.p.x,dy=p.y-drag.p.y;move(drag.h,drag.r0,dx,dy);paint()});
+['pointerup','pointercancel'].forEach(function(n){cbox.addEventListener(n,function(){if(drag&&(r.w<MIN||r.h<MIN)&&drag.h==='se'&&drag.r0.w===0)initBox();drag=null})});
+function move(h,o,dx,dy){
+  if(h==='move'){r.x=Math.max(0,Math.min(o.x+dx,IW-o.w));r.y=Math.max(0,Math.min(o.y+dy,IH-o.h));r.w=o.w;r.h=o.h;return}
+  var L=o.x,T=o.y,R=o.x+o.w,B=o.y+o.h;
+  if(h.indexOf('w')>=0)L=Math.min(Math.max(0,L+dx),R-MIN);if(h.indexOf('e')>=0)R=Math.max(Math.min(IW,R+dx),L+MIN);
+  if(h.indexOf('n')>=0)T=Math.min(Math.max(0,T+dy),B-MIN);if(h.indexOf('s')>=0)B=Math.max(Math.min(IH,B+dy),T+MIN);
+  if(!ratio){r={x:L,y:T,w:R-L,h:B-T};return}
+  var w=R-L,hh=B-T,horiz=/[ew]/.test(h),vert=/[ns]/.test(h);
+  if(horiz&&vert){if(w/hh>ratio)hh=w/ratio;else w=hh*ratio}else if(horiz)hh=w/ratio;else w=hh*ratio;
+  var ax=h.indexOf('e')>=0?'l':h.indexOf('w')>=0?'r':'c',ay=h.indexOf('s')>=0?'t':h.indexOf('n')>=0?'b':'c';
+  var axv=ax==='l'?o.x:ax==='r'?o.x+o.w:o.x+o.w/2,ayv=ay==='t'?o.y:ay==='b'?o.y+o.h:o.y+o.h/2;
+  var mw=ax==='l'?IW-axv:ax==='r'?axv:2*Math.min(axv,IW-axv),mh=ay==='t'?IH-ayv:ay==='b'?ayv:2*Math.min(ayv,IH-ayv);
+  var k=Math.min(1,mw/w,mh/hh);w*=k;hh*=k;
+  r={x:ax==='l'?axv:ax==='r'?axv-w:axv-w/2,y:ay==='t'?ayv:ay==='b'?ayv-hh:ayv-hh/2,w:w,h:hh}}
+cbox.addEventListener('keydown',function(e){var st=e.shiftKey?10:1,m={ArrowLeft:[-st,0],ArrowRight:[st,0],ArrowUp:[0,-st],ArrowDown:[0,st]}[e.key];
+  if(!m)return;e.preventDefault();r.x+=m[0];r.y+=m[1];paint()});
+function fromInputs(src){var x=+fx.value||0,y=+fy.value||0,w=Math.max(1,+fw.value||1),h=Math.max(1,+fh.value||1);
+  if(ratio){if(src===fh)w=h*ratio;else h=w/ratio}
+  w=Math.min(w,IW);h=Math.min(h,IH);if(ratio){if(w/h>ratio)w=h*ratio;else h=w/ratio}
+  r={x:x,y:y,w:w,h:h};paint()}
+[fx,fy,fw,fh].forEach(function(el){el.addEventListener('change',function(){fromInputs(el);el.value=({cx:r.x,cy:r.y,cw:r.w,ch:r.h})[el.id]})});
+$('ar').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;ratio=+b.dataset.r;
+  $('ar').querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+  if(ratio){var cx=r.x+r.w/2,cy=r.y+r.h/2,w=r.w,h=r.h;if(w/h>ratio)w=h*ratio;else h=w/ratio;r={x:cx-w/2,y:cy-h/2,w:w,h:h}}paint()});
+$('resetBox').onclick=initBox;
+$('newImg').onclick=function(){work.classList.add('hidden');drop.classList.remove('hidden');drop.focus()};
+$('dl').onclick=function(){if(!IW)return;var v=$('fmt').value,t=v!=='orig'?v:(/^image\/(jpeg|png|webp)$/.test(file.type)?file.type:'image/png');
+  var c=document.createElement('canvas');c.width=r.w;c.height=r.h;var x=c.getContext('2d');
+  if(t==='image/jpeg'){x.fillStyle='#fff';x.fillRect(0,0,r.w,r.h)}
+  x.drawImage(im,r.x,r.y,r.w,r.h,0,0,r.w,r.h);
+  IT.canvasToBlob(c,t,0.95).then(function(b){if(!b){IT.toast('Could not export this crop');return}
+    IT.download(b,IT.baseName(file.name)+'-cropped-'+r.w+'x'+r.h+'.'+(b.type==='image/jpeg'?'jpg':b.type.split('/')[1]));IT.toast('Cropped image saved')})};
+})();
+</script>
+</body>
+</html>

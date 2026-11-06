@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Image Resizer — Resize Images in Pixels or %, Free</title>
+<meta name="description" content="Resize images online for free to exact pixels or a percentage. Lock aspect ratio, use presets like 1080x1080 or 1920x1080 and export JPG, PNG or WebP — offline.">
+<meta name="keywords" content="image resizer, resize image, resize photo, resize image to 1080x1080, resize image in pixels, resize image by percentage, change image size, instagram image resizer, 1920x1080 resize">
+<link rel="canonical" href="https://soumyaswaraj.github.io/instant-tools/image-resizer/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#5b5bf7">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Instant Tools">
+<meta property="og:title" content="Image Resizer — Free &amp; Private">
+<meta property="og:description" content="Resize images to exact pixels or %, keep aspect ratio, use social presets and export JPG, PNG or WebP. Private, in your browser.">
+<meta property="og:url" content="https://soumyaswaraj.github.io/instant-tools/image-resizer/">
+<meta property="og:image" content="https://soumyaswaraj.github.io/instant-tools/assets/icons/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/css/app.css">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Image Resizer", "url": "https://soumyaswaraj.github.io/instant-tools/image-resizer/", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any (browser-based)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Resize images online for free to exact pixels or a percentage. Lock aspect ratio, use presets like 1080x1080 or 1920x1080 and export JPG, PNG or WebP — offline.", "featureList": ["Resize by pixels or percentage", "Lock aspect ratio", "Presets: 1080×1080, 1080×1350, 1920×1080, 1280×720, 1200×630", "Crop to fill, fit inside or stretch", "Export as JPG, PNG or WebP", "Works offline", "No upload — files stay on your device"]}, {"@type": "HowTo", "name": "How to resize an image", "step": [{"@type": "HowToStep", "text": "Drop an image onto the resizer, or tap to choose one."}, {"@type": "HowToStep", "text": "Enter a new width and height in pixels, a percentage, or tap a preset such as 1080×1080."}, {"@type": "HowToStep", "text": "Choose the output format and click Download resized image."}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I resize an image without losing quality?", "acceptedAnswer": {"@type": "Answer", "text": "Keep the aspect ratio locked and only scale down. Downscaling with high-quality smoothing stays sharp; enlarging beyond the original size always adds blur because new pixels are interpolated."}}, {"@type": "Question", "name": "How do I resize a photo to 1080×1080 for Instagram?", "acceptedAnswer": {"@type": "Answer", "text": "Drop the photo, tap the 1080×1080 preset and keep Crop to fill selected. The image is scaled and center-cropped to a perfect square without distortion."}}, {"@type": "Question", "name": "Can I resize by percentage?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Switch to Percent mode and enter a value such as 50% to halve both width and height while keeping the proportions."}}, {"@type": "Question", "name": "Are my images uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. Resizing happens locally in your browser with the Canvas API. Your images never leave your device and the tool works offline."}}, {"@type": "Question", "name": "Which output format should I pick?", "acceptedAnswer": {"@type": "Answer", "text": "Keep the original format for most uses. Choose JPG for photos, PNG for graphics with transparency and WebP for the smallest web-ready files."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Instant Tools", "item": "https://soumyaswaraj.github.io/instant-tools/"}, {"@type": "ListItem", "position": 2, "name": "Image Resizer", "item": "https://soumyaswaraj.github.io/instant-tools/image-resizer/"}]}]}
+</script>
+<style>.rs{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:760px){.rs{grid-template-columns:1fr}}
+.preview canvas{max-width:100%;height:auto}
+.presets{display:flex;flex-wrap:wrap;gap:6px}.presets .btn[aria-pressed="true"]{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+.wh{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:end}.wh .x{padding-bottom:12px;color:var(--muted)}
+.rv{float:right;font-weight:700;color:var(--brand)}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to tool</a>
+<header class="site-header"><div class="container">
+  <a class="logo" href="../"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>Instant Tools</a>
+  <span class="nav-spacer"></span>
+  <button class="btn btn-sm install-btn" type="button">Install app</button>
+  <a class="btn btn-sm" href="../#all-tools">All tools</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</div></header>
+
+<main id="main" class="container">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Home</a> › <a href="../#image">Image tools</a> › Image Resizer</nav>
+
+  <section class="hero">
+    <span class="eyebrow">Image tool</span>
+    <h1>Free <span class="gradient-text">Image Resizer</span> — Pixels or Percent</h1>
+    <p class="lead">Image Resizer changes the width and height of any photo to exact pixels or a percentage, with aspect-ratio lock and one-tap presets like 1080×1080 and 1920×1080 — free, private and offline in your browser.</p>
+    <div class="trust">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>100% free</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>No upload — runs on your device</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Works offline</span>
+    </div>
+  </section>
+
+  <section class="card tool-app" aria-label="Image Resizer">
+<div class="dropzone" id="drop" aria-label="Drop an image here or tap to choose">
+      <div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></div>
+      <strong>Drop an image here or tap to choose</strong>
+      <small>JPG, PNG, WebP, GIF, BMP · or paste from clipboard · processed locally, never uploaded</small>
+      <input type="file" accept="image/*">
+    </div>
+    <div id="work" class="hidden">
+      <div class="rs">
+        <div><div class="preview"><canvas id="out" aria-label="Resized image preview"></canvas></div>
+          <div class="stats" style="margin-top:12px" aria-live="polite"><div class="stat"><b id="sOrig">–</b><span id="sOrigSz">Original</span></div><div class="stat"><b id="sNew">–</b><span id="sNewSz">Resized</span></div></div></div>
+        <div class="panel">
+          <div class="field"><span class="label" id="modeL">Resize by</span><div class="seg" id="mode" role="group" aria-labelledby="modeL"><button type="button" data-v="px" aria-pressed="true">Pixels</button><button type="button" data-v="pct" aria-pressed="false">Percent</button></div></div>
+          <div id="pxBox">
+            <div class="field wh"><div><label for="w">Width (px)</label><input class="input" type="number" id="w" min="1" max="16384" inputmode="numeric"></div><span class="x">×</span><div><label for="h">Height (px)</label><input class="input" type="number" id="h" min="1" max="16384" inputmode="numeric"></div></div>
+            <div class="field"><label class="check"><input type="checkbox" id="lock" checked> Lock aspect ratio</label></div>
+          </div>
+          <div id="pctBox" class="field hidden"><label for="pct">Scale <span class="rv" id="pctv">50%</span></label><input type="range" id="pct" min="1" max="200" value="50"></div>
+          <div class="field"><span class="label" id="preL">Presets</span><div class="presets" id="presets" role="group" aria-labelledby="preL">
+            <button class="btn btn-sm" type="button" data-w="1080" data-h="1080" aria-pressed="false">1080×1080</button><button class="btn btn-sm" type="button" data-w="1080" data-h="1350" aria-pressed="false">1080×1350</button><button class="btn btn-sm" type="button" data-w="1080" data-h="1920" aria-pressed="false">1080×1920</button><button class="btn btn-sm" type="button" data-w="1920" data-h="1080" aria-pressed="false">1920×1080</button><button class="btn btn-sm" type="button" data-w="1280" data-h="720" aria-pressed="false">1280×720</button><button class="btn btn-sm" type="button" data-w="1200" data-h="630" aria-pressed="false">1200×630</button><button class="btn btn-sm" type="button" data-w="800" data-h="600" aria-pressed="false">800×600</button></div></div>
+          <div class="field" id="fitField"><label for="fit">When aspect ratio changes</label><select class="select" id="fit"><option value="cover">Crop to fill (no distortion)</option><option value="contain">Fit inside (add padding)</option><option value="stretch">Stretch</option></select></div>
+          <div class="field"><label for="fmt">Output format</label><select class="select" id="fmt"><option value="orig">Same as original</option><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></div>
+          <div class="field" id="qField"><label for="q">Quality <span class="rv" id="qv">90</span></label><input type="range" id="q" min="10" max="100" value="90"></div>
+          <div class="actions"><button class="btn btn-primary" type="button" id="dl">Download resized image</button><button class="btn" type="button" id="reset">New image</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="content">
+    <section class="card">
+      <h2>How to resize an image</h2>
+      <ol><li>Drop an image onto the resizer, or tap to choose one.</li><li>Enter a new width and height in pixels, a percentage, or tap a preset such as 1080×1080.</li><li>Choose the output format and click Download resized image.</li></ol>
+    </section>
+    <section class="card">
+      <h2>What is an image resizer?</h2>
+      <p>An image resizer changes the pixel dimensions of a picture — for example from 4000×3000 to 1920×1440. Smaller dimensions mean smaller files and faster pages, while exact sizes are required by social networks: 1080×1080 for Instagram posts, 1920×1080 for Full HD and 1200×630 for link previews.</p>
+      <p>This resizer runs entirely in your browser. The image is drawn onto an HTML canvas at the new size using high-quality smoothing and exported as JPG, PNG or WebP. When the target aspect ratio differs from the original you can crop to fill (no distortion), fit inside with padding, or stretch. No file is uploaded, there is no size limit beyond your device memory, and it works offline.</p>
+    </section>
+    <section class="card faq">
+      <h2>Frequently asked questions</h2>
+      <details><summary>How do I resize an image without losing quality?</summary><p>Keep the aspect ratio locked and only scale down. Downscaling with high-quality smoothing stays sharp; enlarging beyond the original size always adds blur because new pixels are interpolated.</p></details>
+      <details><summary>How do I resize a photo to 1080×1080 for Instagram?</summary><p>Drop the photo, tap the 1080×1080 preset and keep Crop to fill selected. The image is scaled and center-cropped to a perfect square without distortion.</p></details>
+      <details><summary>Can I resize by percentage?</summary><p>Yes. Switch to Percent mode and enter a value such as 50% to halve both width and height while keeping the proportions.</p></details>
+      <details><summary>Are my images uploaded?</summary><p>No. Resizing happens locally in your browser with the Canvas API. Your images never leave your device and the tool works offline.</p></details>
+      <details><summary>Which output format should I pick?</summary><p>Keep the original format for most uses. Choose JPG for photos, PNG for graphics with transparency and WebP for the smallest web-ready files.</p></details>
+    </section>
+    <section class="card">
+      <h2>Related tools</h2>
+      <div class="tools-grid">
+        <a class="tool-card cat-image" href="../image-compressor/"><span class="ti"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg></span><span><h3>Image Compressor</h3><p>Shrink JPG, PNG & WebP file size.</p></span></a>
+        <a class="tool-card cat-image" href="../image-cropper/"><span class="ti"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/></svg></span><span><h3>Image Cropper</h3><p>Crop to 1:1, 16:9 or any size.</p></span></a>
+        <a class="tool-card cat-image" href="../favicon-generator/"><span class="ti"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg></span><span><h3>Favicon Generator</h3><p>Make favicons in every size.</p></span></a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container">
+  <span>© Instant Tools · Free, private browser tools that work offline.</span>
+  <span><a href="../">All tools</a> · <a href="../about/">About &amp; privacy</a></span>
+</div></footer>
+<script src="../assets/js/app.js"></script>
+<script>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var drop=$('drop'),work=$('work'),out=$('out'),W=$('w'),H=$('h'),lock=$('lock'),pct=$('pct'),fit=$('fit'),fmtSel=$('fmt'),q=$('q');
+var img,file,mode='px',blob,timer,gen=0;
+IT.dropzone(drop,{accept:'image/*',paste:true,onFiles:function(f){load(f[0])}});
+function load(f){if(!f||!/^image\//.test(f.type)){IT.toast('Please choose an image');return}
+  IT.loadImage(f).then(function(i){if(img)URL.revokeObjectURL(img.src);img=i;file=f;W.value=i.naturalWidth;H.value=i.naturalHeight;lock.checked=true;
+    $('sOrig').textContent=i.naturalWidth+'×'+i.naturalHeight;$('sOrigSz').textContent='Original · '+IT.formatBytes(f.size);
+    work.classList.remove('hidden');drop.classList.add('hidden');clearPreset();ui();render()}).catch(function(){IT.toast('Could not read this image')})}
+function outType(){var v=fmtSel.value;if(v!=='orig')return v;return /^image\/(jpeg|png|webp)$/.test(file.type)?file.type:'image/png'}
+function target(){var nw=img.naturalWidth,nh=img.naturalHeight;
+  if(mode==='pct'){var s=pct.value/100;return[Math.max(1,Math.round(nw*s)),Math.max(1,Math.round(nh*s))]}
+  return[clamp(parseInt(W.value,10)||nw),clamp(parseInt(H.value,10)||nh)]}
+function clamp(v){return Math.min(16384,Math.max(1,v))}
+function ui(){$('pxBox').classList.toggle('hidden',mode!=='px');$('pctBox').classList.toggle('hidden',mode!=='pct');
+  var t=outType();$('qField').classList.toggle('hidden',t==='image/png');
+  var d=target(),r=img?Math.abs(d[0]/d[1]-img.naturalWidth/img.naturalHeight)>0.01:false;$('fitField').classList.toggle('hidden',!r)}
+function render(){clearTimeout(timer);timer=setTimeout(draw,120)}
+function draw(){if(!img)return;ui();var d=target(),tw=d[0],th=d[1],nw=img.naturalWidth,nh=img.naturalHeight,t=outType();
+  out.width=tw;out.height=th;var x=out.getContext('2d');x.clearRect(0,0,tw,th);x.imageSmoothingEnabled=true;x.imageSmoothingQuality='high';
+  if(t==='image/jpeg'){x.fillStyle='#fff';x.fillRect(0,0,tw,th)}
+  var m=fit.value,ra=nw/nh,rb=tw/th;
+  if(m==='stretch'||Math.abs(ra-rb)<0.01)x.drawImage(img,0,0,tw,th);
+  else if(m==='cover'){var sw=nw,sh=nh;if(ra>rb)sw=nh*rb;else sh=nw/rb;x.drawImage(img,(nw-sw)/2,(nh-sh)/2,sw,sh,0,0,tw,th)}
+  else{var dw=tw,dh=th;if(ra>rb)dh=tw/ra;else dw=th*ra;x.drawImage(img,(tw-dw)/2,(th-dh)/2,dw,dh)}
+  $('sNew').textContent=tw+'×'+th;$('sNewSz').textContent='Resized · calculating…';var g=++gen;
+  IT.canvasToBlob(out,t,t==='image/png'?undefined:q.value/100).then(function(b){if(g!==gen)return;blob=b;$('sNewSz').textContent='Resized · '+(b?IT.formatBytes(b.size):'')})}
+function clearPreset(){$('presets').querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed','false')})}
+W.addEventListener('input',function(){clearPreset();if(lock.checked&&img&&W.value)H.value=Math.max(1,Math.round(W.value*img.naturalHeight/img.naturalWidth));render()});
+H.addEventListener('input',function(){clearPreset();if(lock.checked&&img&&H.value)W.value=Math.max(1,Math.round(H.value*img.naturalWidth/img.naturalHeight));render()});
+lock.addEventListener('change',function(){if(lock.checked&&img){H.value=Math.max(1,Math.round(W.value*img.naturalHeight/img.naturalWidth))}render()});
+pct.addEventListener('input',function(){$('pctv').textContent=pct.value+'%';render()});
+q.addEventListener('input',function(){$('qv').textContent=q.value;render()});
+fit.addEventListener('change',render);fmtSel.addEventListener('change',render);
+$('mode').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;mode=b.dataset.v;
+  $('mode').querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});render()});
+$('presets').addEventListener('click',function(e){var b=e.target.closest('button');if(!b||!img)return;clearPreset();b.setAttribute('aria-pressed','true');
+  mode='px';$('mode').querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.v==='px')});
+  lock.checked=false;W.value=b.dataset.w;H.value=b.dataset.h;render()});
+$('dl').onclick=function(){if(!blob)return;var t=blob.type,ext=t==='image/jpeg'?'jpg':t.split('/')[1];var d=target();IT.download(blob,IT.baseName(file.name)+'-'+d[0]+'x'+d[1]+'.'+ext)};
+$('reset').onclick=function(){work.classList.add('hidden');drop.classList.remove('hidden');drop.focus()};
+})();
+</script>
+</body>
+</html>
